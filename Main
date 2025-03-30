@@ -1,0 +1,34 @@
+#Its been a long time since I updated Github, I am learning pygame now but I decided to do a refresher on classic python with this its going to be a text based UI
+
+Starter = 0
+Rayquaza = False   # Unlockable Legendary
+Mewtwo = False     # Unlockable Legendary
+Arceus = False     # Final Boss
+
+
+
+def PokePick():    # Script to pick pokemon
+    i = 0
+    while i < 1:
+        StarterChoice = input("Which Pokemon would you like to use:\n\nVenusaur\nthe grass-type pokemon\n\nBlastoise\nthe water-type pokemon\n\nCharizard\nthe fire-type pokemon\n")
+        if StarterChoice.lower() == 'venusaur':
+            print("Great choice")
+            Starter = 1
+            break
+        elif StarterChoice.lower() == 'blastoise':
+            print("Great choice")
+            Starter = 2
+            break
+        elif StarterChoice.lower() == 'charizard':
+            print("Great choice")
+            Starter = 3
+            break
+        else:
+            print("\nPlease type the name of the pokemon\n")
+    
+userChoice = input("Welcome to the Pokemon Battle Arena, would you like to battle\n")
+if userChoice.lower() == 'yes' and Starter == 0:
+    print("\nOops It seems you have no pokemon, lets select one")
+    PokePick()
+else:
+    print("Hope to see you soon!")
