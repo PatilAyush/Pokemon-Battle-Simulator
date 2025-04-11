@@ -1,16 +1,19 @@
 # Its been a long time since I updated Github, I am learning pygame now but I decided to do a refresher on classic python with this its going to be a text based UI
 
+import random # Used for deciding moves
+
 # Removed Starter variable as it was making me run into an unexpected bug
 Rayquaza = False   # Unlockable Legendary
 Mewtwo = False     # Unlockable Legendary
 Arceus = False     # Final Boss
-level = 1
 
-# Pokemon Stats:
+# Playable Pokemon Stats:
 statsv = [150, "Solarbeam", "Earth Power", "Sludge Bomb", "Weather ball"]  # Venusaur Stats and Moves
 statsb = [150, "Hydropump", "Protect", "Bite", "Skull bash"]               # Blastoise Stats and Moves
 statsc = [150, "Flamethrower", "Fireblast", "Fly", "Steel wing"]           # Charizard Stats and Moves
-# Eventually going to add more pokemon stats
+# Opposing Pokemon Stats:
+Necros = [1000] # 👀
+statsr = [100, "Scratch", "Tail Whip"] # Opponent Ratata Stats
 
 def PokePick():    # Script to pick pokemon
     global Starter # This was the way I thought of to fix the local frame duplicate variable
@@ -26,19 +29,79 @@ def PokePick():    # Script to pick pokemon
             Starter = 2
             break
         elif StarterChoice.lower() == 'charizard':
-            print("\nGreat choice")
+            print("\n\nGreat choice")
             Starter = 3
             break
         else:
             print("\nPlease type the name of the pokemon\n")
             
 def BattleTime():     # Script to battle 
+    global level
+    level = 1
     if level == 1:    # Venusaur
         print("Your first match is against a Ratata")
         if Starter == 1:
-            print("You send out Venusaur\n\nHere's what you can do")
-            for i in statsv[1:]:
-                print("\n-",i,"\n")
+            print("You send out Venusaur\n")
+            j = 0
+            while j < 1:
+                print("\nHere's what you can do:")
+                for i in statsv[1:]:
+                    print("\n-",i,"\n")
+                moveC = input("Please enter your move number:\n")
+                if moveC == "1":
+                    statsr[0] -= 120
+                    if statsr[0] <= 0:
+                        level += 1
+                        print("Ratata fainted")
+                        break
+                    else:
+                        Omove = random.randint(1,2)
+                        if Omove == 1:
+                            print("Ratata used", statsr[1])
+                            statsv[0] -= 40
+                        else:
+                            print("Ratata used", statsr[2])
+                elif moveC == "2":
+                    statsr[0] -= 70
+                    if statsr[0] <= 0:
+                        level += 1
+                        print("Ratata fainted")
+                        break
+                    else:
+                        Omove = random.randint(1,2)
+                        if Omove == 1:
+                            print("Ratata used", statsr[1])
+                            statsv[0] -= 40
+                        else:
+                            print("Ratata used", statsr[2])
+                elif moveC == "3":
+                    statsr[0] -= 85
+                    if statsr[0] <= 0:
+                        level += 1
+                        print("Ratata fainted")
+                        break
+                    else:
+                        Omove = random.randint(1,2)
+                        if Omove == 1:
+                            print("Ratata used", statsr[1])
+                            statsv[0] -= 40
+                        else:
+                            print("Ratata used", statsr[2])
+                elif moveC == "4":
+                    statsr[0] -= 50
+                    if statsr[0] <= 0:
+                        level += 1
+                        print("Ratata fainted")
+                        break
+                    else:
+                        Omove = random.randint(1,2)
+                        if Omove == 1:
+                            print("Ratata used", statsr[1])
+                            statsv[0] -= 40
+                        else:
+                            print("Ratata used", statsr[2])
+                else:
+                    print("Please write the number of the move, for example", statsv[1], "is '1'")
             
 Starter = 0    
 userChoice = input("Welcome to the Pokemon Battle Arena, would you like to battle\n")
