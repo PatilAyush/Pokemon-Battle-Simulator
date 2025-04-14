@@ -8,7 +8,7 @@ Mewtwo = False     # Unlockable Legendary
 Arceus = False     # Final Boss
 
 # Playable Pokemon Stats:
-statsv = [150, "Solarbeam", "Earth Power", "Sludge Bomb", "Weather ball"]  # Venusaur Stats and Moves
+statsv = [150, ("Solarbeam", 120), ("Earth Power", 70), ("Sludge Bomb", 45), ("Weather ball", 50)]  # Venusaur Stats and Moves
 statsb = [150, "Hydropump", "Protect", "Bite", "Skull bash"]               # Blastoise Stats and Moves
 statsc = [150, "Flamethrower", "Fireblast", "Fly", "Steel wing"]           # Charizard Stats and Moves
 # Opposing Pokemon Stats:
@@ -47,9 +47,9 @@ def BattleTime():     # Script to battle
                 print("\nHere's what you can do:")
                 for i in statsv[1:]:
                     print("\n-",i,"\n")
-                moveC = input("Please enter your move number:\n")
-                if moveC == "1":
-                    statsr[0] -= 120
+                moveC = int(input("Please enter your move number:\n"))
+                if moveC in [1, 2, 3, 4]:
+                    statsr[0] -= statsv[moveC][1]
                     if statsr[0] <= 0:
                         level += 1
                         print("Ratata fainted")
@@ -57,51 +57,13 @@ def BattleTime():     # Script to battle
                     else:
                         Omove = random.randint(1,2)
                         if Omove == 1:
-                            print("Ratata used", statsr[1])
+                            print("Ratata used", statsr[1] + "!", "It does 40 damage")
                             statsv[0] -= 40
                         else:
-                            print("Ratata used", statsr[2])
-                elif moveC == "2":
-                    statsr[0] -= 70
-                    if statsr[0] <= 0:
-                        level += 1
-                        print("Ratata fainted")
-                        break
-                    else:
-                        Omove = random.randint(1,2)
-                        if Omove == 1:
-                            print("Ratata used", statsr[1])
-                            statsv[0] -= 40
-                        else:
-                            print("Ratata used", statsr[2])
-                elif moveC == "3":
-                    statsr[0] -= 85
-                    if statsr[0] <= 0:
-                        level += 1
-                        print("Ratata fainted")
-                        break
-                    else:
-                        Omove = random.randint(1,2)
-                        if Omove == 1:
-                            print("Ratata used", statsr[1])
-                            statsv[0] -= 40
-                        else:
-                            print("Ratata used", statsr[2])
-                elif moveC == "4":
-                    statsr[0] -= 50
-                    if statsr[0] <= 0:
-                        level += 1
-                        print("Ratata fainted")
-                        break
-                    else:
-                        Omove = random.randint(1,2)
-                        if Omove == 1:
-                            print("Ratata used", statsr[1])
-                            statsv[0] -= 40
-                        else:
-                            print("Ratata used", statsr[2])
+                            print("Ratata used", statsr[2] + "!", "It raised its hp by 20")
+                            statsr[0] += 20
                 else:
-                    print("Please write the number of the move, for example", statsv[1], "is '1'")
+                    print("Please type the move number")
             
 Starter = 0    
 userChoice = input("Welcome to the Pokemon Battle Arena, would you like to battle\n")
