@@ -8,11 +8,11 @@ Mewtwo = False     # Unlockable Legendary
 Arceus = False     # Final Boss
 
 # Playable Pokemon Stats:
-statsv = [150, ("Solarbeam", 120), ("Earth Power", 70), ("Sludge Bomb", 45), ("Weather ball", 50)]  # Venusaur Stats and Moves
-statsb = [150, ("Hydropump", 110), ("Protect", 0), ("Bite", 40), ("Skull bash", 75)]               # Blastoise Stats and Moves
-statsc = [150, ("Flamethrower", 100), ("Fireblast",150), ("Fly", 50), ("Steel wing", 75)]           # Charizard Stats and Moves
+statsv = [150, ("Solarbeam", 120, 10), ("Earth Power", 70, 15), ("Sludge Bomb", 45, 20), ("Weather ball", 50, 25), ("FRENZY PLANT"), 500, 1]  # Venusaur Stats and Moves
+statsb = [150, ("Hydropump", 110, 10), ("Protect", 0, 15), ("Bite", 40, 20), ("Skull bash", 75, 25), ("HYDRO CANNON", 500, 1)]               # Blastoise Stats and Moves
+statsc = [150, ("Flamethrower", 100, 10), ("Fireblast",150, 15), ("Fly", 50, 20), ("Steel wing", 75, 25), ("OVERHEAT", 500, 1)]           # Charizard Stats and Moves
 # Opposing Pokemon Stats:
-Necros = [1000] # 👀
+Necros = [1000000] # 👀
 statsr = [100, "Scratch", "Tail Whip"] # Opponent Ratata Stats
 
 def PokePick():    # Script to pick pokemon
@@ -87,6 +87,36 @@ def BattleTime():     # Script to battle
                             else:
                                 print("Ratata used", statsr[1] + "!", "It does 40 damage")
                             statsb[0] -= 40
+                        else:
+                            print("Ratata used", statsr[2] + "!", "It raised its hp by 20")
+                            statsr[0] += 20
+                else:
+                    print("Please type the move number")
+        
+        elif Starter == 3:
+            print("You send out Charizard\n")
+            j = 0
+            while j < 1:
+                print("\nHere's what you can do:")
+                for i in statsc[1:]:
+                    print("\n-",i,"\n")
+                moveC = int(input("Please enter your move number:\n"))
+                if moveC in [1, 2, 3, 4]:
+                    print("Charizard used", statsc[moveC][0])
+                    statsr[0] -= statsc[moveC][1]
+                    if statsr[0] <= 0:
+                        level += 1
+                        print("Ratata fainted")
+                        break
+                        statsc[0] = 150
+                    else:
+                        Omove = random.randint(1,2)
+                        if Omove == 1:
+                            if moveC == 2:
+                                print("Blastoise used Protect! It blocked the attack!")
+                            else:
+                                print("Ratata used", statsr[1] + "!", "It does 40 damage")
+                            statsc[0] -= 40
                         else:
                             print("Ratata used", statsr[2] + "!", "It raised its hp by 20")
                             statsr[0] += 20
