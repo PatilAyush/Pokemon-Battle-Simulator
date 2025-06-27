@@ -1,1 +1,61 @@
+import random
 
+DummyType = False
+TrainingDummy = [
+    1000000, 
+    DummyType
+]
+CurrentType = False
+Arceus = [
+    1000000,  # Health
+    CurrentType, # Typing
+    ("Swords Dance", 0, 20, "Skill"), # Move 1
+    ("Judgement", 1000, 5, CurrentType), # Move 2
+    ("Recover", 0, 10, "Skill"), # Move 3
+    ("Extreme Speed", 100, 10, "Normal"), # Move 4
+    
+    None, # Z-Crystal
+    None # Mega Evolution
+]
+
+Types = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", 
+         "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel"]
+
+# Unique, non-redundant type transformations with no Fairy
+TypeMap = {
+    "Normal": "Fighting",
+    "Fire": "Water",
+    "Water": "Electric",
+    "Electric": "Ground",
+    "Grass": "Flying",
+    "Ice": "Steel",
+    "Fighting": "Psychic",
+    "Poison": "Rock",
+    "Ground": "Ice",
+    "Flying": "Bug",
+    "Psychic": "Ghost",
+    "Bug": "Fire",
+    "Rock": "Grass",
+    "Ghost": "Dark",
+    "Dragon": "Dragon",
+    "Dark": "Normal",
+    "Steel": "Poison"
+}
+
+def ArceusTypeage(Type):
+    global CurrentType
+    CurrentType = ""
+    if Type in TypeMap:
+        CurrentType = TypeMap[Type]
+
+
+
+while True:
+    DummyType = random.choice(Types)
+    ArceusTypeage(DummyType)
+    TrainingDummy[1] = DummyType
+    Arceus[1] = CurrentType
+    print(f"Arceus Switched To {CurrentType}")
+    
+        
+    break
